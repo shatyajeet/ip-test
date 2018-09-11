@@ -1,6 +1,7 @@
 const express = require('express');
 const logger = require('morgan');
 
+const PORT = process.env.PORT || 8080;
 const app = express();
 app.use(logger('combined'));
 
@@ -17,4 +18,7 @@ app.get('/', (req, res) => {
   });
 });
 
-app.listen(3000);
+const server = app.listen(PORT, () => {
+  const port = server.address().port;
+  console.log(`App listening on port ${port}`);
+});
